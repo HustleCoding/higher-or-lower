@@ -44,7 +44,7 @@ while True: # play multiple games
     print()
 
     for cardNumber in range(0, NCARDS): # play one game of this many cards
-        answer = input(f'Will the next card be higher or lower than the {currentCardRank} of {currentCardSuit}? (enter h or 1): ')
+        answer = input(f'Will the next card be higher or lower than the {currentCardRank} of {currentCardSuit}? (enter h or l): ')
         answer = answer.casefold() # force lowercase
         nextCardDict = getCard(gameDeckList)
         nextCardRank = nextCardDict['rank']
@@ -59,13 +59,17 @@ while True: # play multiple games
             else:
                 print('Sorry, it was not higher')
                 score = score - 15
-        elif answer == '1':
+        elif answer == 'l':
             if nextCardValue < currentCardValue:
                 score = score + 20
                 print('You got it right, it was lower')
             else:
                 score = score - 15
                 print('Sorry, it was not lower')
+        elif answer != 'l' or answer != 'h':
+            print('Type "h" for higher or "l" for lower please')
+            break
+
 
         print(f'Your score is: {score}')
         print()
